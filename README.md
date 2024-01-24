@@ -48,6 +48,12 @@ We started by making the chassis of the line follower: using a foam board provid
 
 ![299414186-e831e28d-18b1-4eec-86ee-6d00e78f1f6e](https://github.com/anamaria1-png/Line-follower/assets/89720718/4ee42b46-f2d8-4e38-8034-da16319081e2)
 ![299414695-e3917069-5faa-4ea4-ad73-e3c97a662931](https://github.com/anamaria1-png/Line-follower/assets/89720718/8f52d2af-dcaa-49e3-9a46-b4f84dac88fe)
+Then, with the code provided in the last laboratory, we started testing how it works. We soon realized it doesn't and it didn't take us long to figure out that the problem was the calibration, but it took us enough to figure out that we didn't attach the sensor as we should've; it couldn't read the ground since the foam board blocked it, so we had to grab the cutter and carve through our chassis again. Then, we could finally test it, but we ran into other problems. Firstly, we didn't carefully follow the instruction and disconnected the battery wires incorrectly, so the ends touched and it short circuited, which caused it to heat up severely. Once we solved that, we encountered another issue: due to a wire connectivity issue, the battery heated up again and this time, it caught fire for a second before we disconnected it, melting the plastic of our wires. After replacing the battery and building up the courage to connect it to our LF again, we finally managed to start testing the code for reals. It took us an insane amount of time to find the right triple of values for kp, ki and kd to make our little car work, but our issues weren't solved then either. We had to hardcode a way for our LF to ignore small errors because it was too slow, completing the circuit in about 40 seconds, which was a lot. Calibrating the sensor automatically was another pain we had to go through, but, after trying lots of alternatives - including trying to store a manual calibration in EEPROM - we managed to fix it somehow (although I think none of us is really sure how).
+
+The final result was very satisfying, you can watch how our line follower completes the circuit here: Line follower demo.
+In the end, even though we spent 12 hours on college grounds (until 12AM), which I wouldn't wish upon my worst enemy, it was genuinely a fun experience and our work felt nicely rewarded when we saw our Lightning McQueen successfully completing the circuit in a decent amount of seconds :)
+
+Another pic of our car, this time with the battery we didn't blow up:
 
 
 
