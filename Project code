@@ -11,9 +11,8 @@ const int m2Enable = 10;
 int m1Speed = 0;
 int m2Speed = 0;
 
-// increase kp’s value and see what happens
 float kp = 14;
-float ki = 0;
+float ki = 0.65;
 float kd = 2;
 
 int p = 1;
@@ -73,51 +72,20 @@ void setMotorSpeed(int motor1Speed, int motor2Speed) {
   }
 }
 
+void moveLeftInPlace() {
+  setMotorSpeed(0, 140);
+}
 
-void calibrateInPlace() {
-  const int rotationSpeed = 255; // adjust this speed to make the rotation slower or faster
-  const int frontBackSpeed = 160;
-
-    // Rotate left
-    setMotorSpeed(rotationSpeed, 0);
-    delay(100);
-
-     // Stop for a short period
-    setMotorSpeed(0, 0);
-    delay(200);
-
-    // Rotate right
-    setMotorSpeed(0, rotationSpeed);
-    delay(100);
-
-     // Stop for a short period
-    setMotorSpeed(0, 0);
-    delay(200);
-
-     // Rotate right
-    setMotorSpeed(frontBackSpeed, frontBackSpeed);
-    delay(100);
-
-     // Stop for a short period
-    setMotorSpeed(0, 0);
-    delay(200);
-
-    // Rotate right
-    setMotorSpeed(-frontBackSpeed, -frontBackSpeed);
-    delay(100);
-
-     // Stop for a short period
-    setMotorSpeed(0, 0);
-    delay(200);
-
-} 
+void moveRightInPlace() {
+  setMotorSpeed(140, 0);
+}
 
 void calibrateSensors(){
-   for (uint16_t i = 0; i < 10; i++)
+   for (uint16_t i = 0; i < 100; i++)
   {
+    moveLeftInPlace();
+    moveRightInPlace();
     qtr.calibrate();
-    calibrateInPlace();
-  // do motor movement here, with millis() as to not ruin calibration)
   }
 }
 
@@ -134,44 +102,33 @@ void setup() {
   delay(500);
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH); // turn on Arduino's LED to indicate we are in calibration mode
-  // calibrate the sensor. For maximum grade the line follower should do the movement itself, without
-  //human interaction.
   calibrateSensors();
- 
   digitalWrite(LED_BUILTIN, LOW);
   Serial.begin(9600);
 }
 
 void loop() {
-  // inefficient code, written in loop. You must create separate functions
-  // a bit counter intuitive because of the signs
-  // basically in the first if, you substract the error from m1Speed (you add the negative)
-  // in the 2nd if you add the error to m2Speed (you substract the negative)
-  // it's just the way the values of the sensors and/or motors lined up
-  // make sure it doesn't go past limits. You can use -255 instead of 0 if calibrated programmed
-  //properly.
-  // making sure we don't go out of bounds
-  // maybe the lower bound should be negative, instead of 0? This of what happens when making a
-  //steep turn
   pidControl(kp, ki, kd);
   calculateMotorsSpeed();
   setMotorSpeed(m2Speed, m1Speed);
   // DEBUGGING
-  Serial.print("Error: ");
+  /*Serial.print("Error: ");
   Serial.println(error);
   Serial.print("M1 speed: ");
   Serial.println(m1Speed);
 
   Serial.print("M2 speed: ");
   Serial.println(m2Speed);
+  delay(250);*/
 
-  // delay(250);
 }
 
 // calculate PID value based on error, kp, kd, ki, p, i and d.
 void pidControl(float kp, float ki, float kd) {
   error = map(qtr.readLineBlack(sensorValues), 0, 5000, -50, 50);
-
+  if(abs(error) < 45  ){
+    error = 0;
+  }
   p = error;
   i = i + error;
   d = error - lastError;
