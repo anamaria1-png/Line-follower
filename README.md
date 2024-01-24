@@ -46,6 +46,7 @@ How did we do it?
 
 We started by making the chassis of the line follower: using a foam board provided by our teacher, a 3D model to take inspiration from and a cutter, we had to handmade the body of the LF the best we could. Putting our crafting skills at work, we managed to make a sturdy chassis for the robot in little over 2 hours. After a short pizza break, it was time to assemble the car. It took us a bit to figure out how to exactly connect everything, but we managed to do a fine job.
 
-![Untitled](https://github.com/anamaria1-png/Line-follower/assets/89720718/09968d3f-6afe-48e3-8483-c3770bbd42d1)
+![299414186-e831e28d-18b1-4eec-86ee-6d00e78f1f6e](https://github.com/anamaria1-png/Line-follower/assets/89720718/4ee42b46-f2d8-4e38-8034-da16319081e2)
+
 
 
