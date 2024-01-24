@@ -55,6 +55,9 @@ In the end, even though we spent 12 hours on college grounds (until 12AM), which
 
 Another pic of our car, this time with the battery we didn't blow up:
 ![299418907-cbf2b33e-4daa-4e27-b280-cb11c8f45c11](https://github.com/anamaria1-png/Line-follower/assets/89720718/760180cb-eefc-4369-827b-4a0efc85b93f)
+
+https://youtu.be/rWC1NJsf9Xo
+
 Project done in partnership with @slayyyyyyy  and @malinaalexa (team Slay).
 
 
